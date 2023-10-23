@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "port": 5432,
+  "host": "database",
+  "username": "user",
+  "password": "mypassword",
+  "database": "bemol",
+  "migrations": ["./src/infrastructure/database/typeorm/migrations/*.ts"],
+  "entities": [
+  ],
+  "cli": {
+    "migrationsDir": "./src/infrastructure/database/typeorm/migrations"
+  }
+}
