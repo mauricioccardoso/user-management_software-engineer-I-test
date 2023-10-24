@@ -1,8 +1,10 @@
 import { Column, CreateDateColumn, PrimaryColumn, Entity } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
+import { IUser } from "@domain/entities/IUser";
+
 @Entity("users")
-class User {
+class User implements IUser {
   @PrimaryColumn()
   id? : string;
 

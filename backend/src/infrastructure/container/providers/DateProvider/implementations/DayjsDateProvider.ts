@@ -14,9 +14,9 @@ class DayjsDateProvider implements IDateProvider {
 
   calculateYears(date : Date) : number {
     const dateNow = dayjs();
-    const dateFormated = dayjs(date, "DD/MM/YYYY").toDate();
+    const dateFormatted = dayjs(date, "DD/MM/YYYY").toDate();
 
-    return dateNow.diff(dateFormated, 'year');
+    return dateNow.diff(dateFormatted, 'year');
   }
 }
 
