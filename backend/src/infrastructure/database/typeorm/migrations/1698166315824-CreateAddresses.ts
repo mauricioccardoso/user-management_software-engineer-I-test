@@ -18,7 +18,7 @@ export class CreateAddresses1698166315824 implements MigrationInterface {
           },
           {
             name: "number",
-            type: "varchar",
+            type: "numeric",
           },
           {
             name: "street",

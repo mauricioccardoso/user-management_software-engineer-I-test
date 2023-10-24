@@ -13,7 +13,7 @@ class Address implements IAddress {
   cep : string;
 
   @Column()
-  number : string;
+  number : number;
 
   @Column()
   street : string;

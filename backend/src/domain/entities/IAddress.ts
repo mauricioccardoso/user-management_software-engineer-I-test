@@ -1,7 +1,7 @@
 interface IAddress {
   id? : string,
   cep : string,
-  number: string,
+  number: number,
   street: string,
   neighborhood: string,
   city: string,
