@@ -7,8 +7,10 @@
   "database": "bemol",
   "migrations": ["./src/infrastructure/database/typeorm/migrations/*.ts"],
   "entities": [
+    "src/domain/entities/**/*.ts"
   ],
   "cli": {
+    "entitiesDir": "src/domain/entities",
     "migrationsDir": "./src/infrastructure/database/typeorm/migrations"
   }
 }
