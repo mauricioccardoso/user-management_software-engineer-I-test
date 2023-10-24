@@ -8,6 +8,8 @@ interface IUsersRepository {
     cpf
   } : ICreateUserDTO) : Promise<void>;
 
+  findById(id : string) : Promise<User>;
+
   findByEmail(email : string) : Promise<User>;
 
   findByCPF(cpf : string) : Promise<User>;
