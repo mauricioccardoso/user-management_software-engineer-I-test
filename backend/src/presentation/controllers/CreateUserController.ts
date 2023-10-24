@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+import { getManager } from "typeorm";
 
+import { AddressValidationService } from "@domain/services/AddressValidationService";
 import { CreateUserUseCase } from "@application/userCases/CreateUserUseCase";
 import { CreateAddressUseCase } from "@application/userCases/CreateAddressUseCase";
 import { AppError } from "@shared/errors/AppError";
-import { getManager } from "typeorm";
 
 class CreateUserController {
   async handle(request : Request, response : Response) : Promise<Response> {
@@ -13,6 +14,9 @@ class CreateUserController {
 
     const createUserUseCase = container.resolve(CreateUserUseCase);
     const createAddressUseCase = container.resolve(CreateAddressUseCase);
+    const addressValidationService = container.resolve(AddressValidationService);
+
+    await addressValidationService.execute(cep);
 
     try {
       await getManager().transaction(async transactionalEntityManager => {
