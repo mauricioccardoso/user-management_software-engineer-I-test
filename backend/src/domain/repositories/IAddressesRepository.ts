@@ -1,4 +1,5 @@
 import { ICreateAddressesDTO } from "@application/DTO/ICreateAddressesDTO";
+import { Address } from "@domain/entities/typeorm/Address";
 
 interface IAddressesRepository {
   create({
@@ -10,6 +11,8 @@ interface IAddressesRepository {
     state,
     user_id,
   } : ICreateAddressesDTO) : Promise<void>;
+
+  findById(id : string) : Promise<Address>;
 }
 
 export { IAddressesRepository };
