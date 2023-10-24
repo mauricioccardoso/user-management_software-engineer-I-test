@@ -16,12 +16,14 @@ class UsersRepository implements IUsersRepository {
     name,
     email,
     cpf,
+    birthdate
   } : ICreateUserDTO) : Promise<void> {
     const user : User = this.repository.create({
       id,
       name,
       email,
       cpf,
+      birthdate
     });
     await this.repository.save(user);
   }

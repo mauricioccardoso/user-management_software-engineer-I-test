@@ -5,7 +5,8 @@ interface IUsersRepository {
   create({
     name,
     email,
-    cpf
+    cpf,
+    birthdate
   } : ICreateUserDTO) : Promise<void>;
 
   findById(id : string) : Promise<User>;

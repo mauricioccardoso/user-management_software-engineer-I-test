@@ -15,6 +15,9 @@ class User {
   @Column()
   cpf : string;
 
+  @Column()
+  birthdate : Date;
+
   @CreateDateColumn()
   created_at : Date;
 
