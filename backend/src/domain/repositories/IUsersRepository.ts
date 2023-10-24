@@ -11,6 +11,8 @@ interface IUsersRepository {
   findByEmail(email : string) : Promise<User>;
 
   findByCPF(cpf : string) : Promise<User>;
+
+  list(): Promise<User[]>;
 }
 
 export { IUsersRepository };
