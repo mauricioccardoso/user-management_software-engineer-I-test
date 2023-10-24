@@ -7,7 +7,7 @@ interface IUsersRepository {
     email,
     cpf,
     birthdate
-  } : ICreateUserDTO) : Promise<void>;
+  } : ICreateUserDTO) : Promise<User>;
 
   findById(id : string) : Promise<User>;
 

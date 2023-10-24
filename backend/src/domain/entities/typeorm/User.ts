@@ -1,7 +1,8 @@
-import { Column, CreateDateColumn, PrimaryColumn, Entity } from "typeorm";
+import { Column, CreateDateColumn, PrimaryColumn, Entity, OneToOne } from "typeorm";
 import { v4 as uuidv4 } from "uuid";
 
 import { IUser } from "@domain/entities/IUser";
+import { Address } from "@domain/entities/typeorm/Address";
 
 @Entity("users")
 class User implements IUser {
@@ -19,6 +20,9 @@ class User implements IUser {
 
   @Column()
   birthdate : Date;
+
+  @OneToOne(() => Address, (address) => address.User)
+  Address: Address
 
   @CreateDateColumn()
   created_at : Date;

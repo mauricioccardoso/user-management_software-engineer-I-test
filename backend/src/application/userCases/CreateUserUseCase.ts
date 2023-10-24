@@ -21,7 +21,7 @@ class CreateUserUseCase {
     email,
     cpf,
     birthdate
-  } : ICreateUserDTO) : Promise<void> {
+  } : ICreateUserDTO) : Promise<User> {
     let userAlreadyExists : User = await this.usersRepository.findByEmail(email);
 
     if(userAlreadyExists) {
@@ -40,12 +40,14 @@ class CreateUserUseCase {
       throw new AppError("Invalid Birthdate. User must be older than 18 years");
     }
 
-    await this.usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       cpf,
       birthdate : this.dateProvider.formatDate(birthdate)
     });
+
+    return user;
   }
 }
 

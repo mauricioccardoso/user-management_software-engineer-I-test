@@ -17,7 +17,7 @@ class UsersRepository implements IUsersRepository {
     email,
     cpf,
     birthdate
-  } : ICreateUserDTO) : Promise<void> {
+  } : ICreateUserDTO) : Promise<User> {
     const user : User = this.repository.create({
       id,
       name,
@@ -25,7 +25,10 @@ class UsersRepository implements IUsersRepository {
       cpf,
       birthdate
     });
+
     await this.repository.save(user);
+
+    return user;
   }
 
   async findById(id : string) : Promise<User> {
@@ -44,9 +47,10 @@ class UsersRepository implements IUsersRepository {
   }
 
   async list() : Promise<User[]> {
-    const usersList = await this.repository.find(
-      { order: { name: "ASC" } }
-    );
+    const usersList = await this.repository.find({
+      order: { name: "ASC" },
+      relations: ["Address"],
+    });
     return usersList;
   }
 }
