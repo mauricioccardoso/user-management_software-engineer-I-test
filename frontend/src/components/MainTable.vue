@@ -22,12 +22,12 @@
         <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.email }}</td>
         <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.cpf }}</td>
         <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.birthdate }}</td>
-        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.Address.cep }}</td>
-        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.Address.number }}</td>
-        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.Address.street }}</td>
-        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.Address.neighborhood }}</td>
-        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.Address.city }}</td>
-        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.Address.state }}</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.cep }}</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.number }}</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.street }}</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.neighborhood }}</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.city }}</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.state }}</td>
 
         <td class="border border-gray-300 px-1 md:px-2 text-center">Editar</td>
       </tr>

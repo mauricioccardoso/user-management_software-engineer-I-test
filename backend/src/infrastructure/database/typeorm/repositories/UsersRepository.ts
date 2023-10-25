@@ -49,7 +49,7 @@ class UsersRepository implements IUsersRepository {
   async list() : Promise<User[]> {
     const usersList = await this.repository.find({
       order: { name: "ASC" },
-      relations: ["Address"],
+      relations: ["address"],
     });
     return usersList;
   }

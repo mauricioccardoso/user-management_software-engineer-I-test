@@ -22,7 +22,7 @@ class User implements IUser {
   birthdate : Date;
 
   @OneToOne(() => Address, (address) => address.User)
-  Address: Address
+  address: Address
 
   @CreateDateColumn()
   created_at : Date;
