@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express, { Express, NextFunction, Request, Response } from "express";
 import "express-async-errors";
+import cors from 'cors';
 
 import { AppError } from "@shared/errors/AppError";
 import createConnection from "@infrastructure/database/typeorm";
@@ -11,8 +12,10 @@ import "@infrastructure/container";
 
 createConnection();
 const app : Express = express();
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
-
 app.use(router);
 
 app.use(
