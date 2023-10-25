@@ -33,6 +33,17 @@ or
 - Code Reusability
 - And more...
 
+---
+## Project Architecture
+![Project Architecture](./imagesC4/project_architecture.png)
+
+---
+
+## Design Architecture
+![Design Architecture](./imagesC4/code_architecture.png)
+
+---
+
 ## Configuration
 
 1. Clone the project to your machine
