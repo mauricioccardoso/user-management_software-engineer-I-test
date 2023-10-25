@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 
-import { type Ref, ref } from "vue";
 import axios from "axios";
+import { useNotificationStore } from "@/stores/NotificationStore";
 
 interface IViaCEPAddress {
   cep,
@@ -12,6 +12,8 @@ interface IViaCEPAddress {
 }
 
 export const useViaCEPDataStore = defineStore('viaCEPDataStore', () => {
+  const notificationStore = useNotificationStore();
+
   const getAddressByCEP = async (cep : string) => {
     cep = cep.replace("-", "");
 
@@ -20,7 +22,7 @@ export const useViaCEPDataStore = defineStore('viaCEPDataStore', () => {
       const data : IViaCEPAddress = response.data;
 
       if(data.erro) {
-        console.log("Error ao buscar endereço pelo cep informado");
+        notificationStore.showNotification("Endereço inválido", 'error');
         return;
       }
 

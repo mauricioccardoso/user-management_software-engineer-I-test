@@ -4,10 +4,12 @@ import { type Ref, ref } from "vue";
 import type { IUsersData } from "@/interfaces/IUsersData";
 import httpClient from "@/http";
 import { useUsersDataStore } from "@/stores/UsersDataStore";
+import { useNotificationStore } from "@/stores/NotificationStore";
 
 
 export const useFormCreateUserDataStore = defineStore('formCreateUserDataStore', () => {
   const usersDataStore = useUsersDataStore();
+  const notificationStore = useNotificationStore();
 
   const userFormData : Ref<IUsersData> = ref({
     address: {}
@@ -58,9 +60,11 @@ export const useFormCreateUserDataStore = defineStore('formCreateUserDataStore',
     }
 
     if(response?.code) {
-      console.log(`Falha ao salvar: ${ response.response.data.message }`);
+      notificationStore.showNotification(response.response.data.message, 'error');
       return;
     }
+
+    notificationStore.showNotification("Usuário salvo com sucesso", 'success');
 
     await usersDataStore.getUsers();
     setFormOpen(false);
