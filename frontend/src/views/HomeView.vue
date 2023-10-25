@@ -1,8 +1,11 @@
 <template>
-  <main>
-    <h1 class="text-blue-600">Hello World</h1>
+  <MainHeader/>
+  <main class="mt-2">
+    <MainTable />
   </main>
 </template>
 
 <script setup lang="ts">
+import MainTable from "@/components/MainTable.vue";
+import MainHeader from "@/components/MainHeader.vue";
 </script>
