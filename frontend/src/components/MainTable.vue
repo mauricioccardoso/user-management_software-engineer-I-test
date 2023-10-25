@@ -29,7 +29,13 @@
         <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.city }}</td>
         <td class="border border-gray-300 px-1 md:px-2 text-sm text-center">{{ user.address.state }}</td>
 
-        <td class="border border-gray-300 px-1 md:px-2 text-center">Editar</td>
+        <td class="border border-gray-300 px-1 md:px-2 text-center">
+          <button
+              @click="formCreateUserDataStore.openModalEdit(user)"
+              class="text-white text-sm font-bold bg-blue-600 rounded-lg px-1 hover:bg-blue-700">
+            Editar
+          </button>
+        </td>
       </tr>
       </tbody>
     </table>
@@ -38,7 +44,10 @@
 
 <script setup lang="ts">
 import { useUsersDataStore } from "@/stores/UsersDataStore";
+import { useFormCreateUserDataStore } from "@/stores/FormCreateUserData";
 
 const usersDataStore = useUsersDataStore();
+const formCreateUserDataStore = useFormCreateUserDataStore();
+
 usersDataStore.getUsers();
 </script>

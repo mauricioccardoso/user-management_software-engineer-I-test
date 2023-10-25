@@ -12,19 +12,68 @@ export const useFormCreateUserDataStore = defineStore('formCreateUserDataStore',
   const userFormData : Ref<IUsersData> = ref({
     address: {}
   });
-  const isFormOpen = ref(true);
+  const isFormOpen = ref(false);
 
   const setFormOpen = (value : boolean) => {
     isFormOpen.value = value;
     clearForm();
   }
 
-  const clearForm = () => {
-    userFormData.value.name = '';
-    userFormData.value.cpf = '';
-    userFormData.value.email = '';
-    userFormData.value.birthdate = '';
+  const openModalEdit = (user : IUsersData) => {
+    setFormOpen(true);
 
+    userFormData.value.id = user.id;
+    userFormData.value.name = user.name;
+    userFormData.value.cpf = user.cpf;
+    userFormData.value.email = user.email;
+    userFormData.value.birthdate = user.birthdate;
+
+    userFormData.value.address.id = user.address.id;
+    userFormData.value.address.cep = user.address.cep;
+    userFormData.value.address.number = user.address.number;
+    userFormData.value.address.street = user.address.street;
+    userFormData.value.address.neighborhood = user.address.neighborhood;
+    userFormData.value.address.city = user.address.city;
+    userFormData.value.address.state = user.address.state;
+  }
+
+  const sendUserData = async () => {
+
+    let response;
+
+    if(!userFormData.value.address.id) {
+      response = await httpClient.post("/users", userFormData.value)
+        .then(({ data }) => {
+          return data;
+        }).catch((error) => {
+          return error;
+        })
+    } else {
+      response = await httpClient.put("/users", userFormData.value)
+        .then(({ data }) => {
+          return data;
+        }).catch((error) => {
+          return error;
+        })
+    }
+
+    if(response?.code) {
+      console.log(`Falha ao salvar: ${ response.response.data.message }`);
+      return;
+    }
+
+    await usersDataStore.getUsers();
+    setFormOpen(false);
+  }
+
+  const clearForm = () => {
+    userFormData.value.id = "";
+    userFormData.value.name = "";
+    userFormData.value.cpf = "";
+    userFormData.value.email = "";
+    userFormData.value.birthdate = "";
+
+    userFormData.value.address.id = "";
     userFormData.value.address.cep = "";
     userFormData.value.address.number = null;
     userFormData.value.address.street = "";
@@ -33,24 +82,5 @@ export const useFormCreateUserDataStore = defineStore('formCreateUserDataStore',
     userFormData.value.address.state = "";
   }
 
-  const sendUserData = async () => {
-    const resp = await httpClient.post("/users", userFormData.value)
-      .then(({ data }) => {
-        usersDataStore.getUsers();
-        setFormOpen(false);
-        return data;
-      })
-      .catch((error) => {
-        console.log(error)
-        return error
-      });
-
-
-    if(resp?.code) {
-      console.log("Falha ao salvar: " + resp.response.data.message);
-      return;
-    }
-  }
-
-  return { userFormData, isFormOpen, setFormOpen, sendUserData }
+  return { userFormData, isFormOpen, setFormOpen, sendUserData, openModalEdit }
 });
