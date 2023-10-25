@@ -24,7 +24,7 @@ class UpdateAddressUseCase {
     const address = await this.addressesRepository.findById(id);
 
     if(!address) {
-      throw new AppError("Address does not exists");
+      throw new AppError("Endereço não existe");
     }
 
     address.cep = cep;

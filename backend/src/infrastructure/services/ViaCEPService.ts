@@ -19,12 +19,12 @@ class ViaCEPService {
       const address : IAddressResponse = response.data;
 
       if(address.erro) {
-        throw new AppError("Address Not Found");
+        throw new AppError("Endereço não encontrado");
       }
 
       return address;
     } catch (error) {
-      throw new AppError(`Error when retrieving address ViaCEP: ${ error.message }`);
+      throw new AppError(`Erro ao buscar endereço via ViaCEP: ${ error.message }`);
     }
   }
 }

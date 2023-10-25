@@ -25,19 +25,19 @@ class CreateUserUseCase {
     let userAlreadyExists : User = await this.usersRepository.findByEmail(email);
 
     if(userAlreadyExists) {
-      throw new AppError("User already exists with this email");
+      throw new AppError("Usuário já existe com este e-mail");
     }
 
     userAlreadyExists = await this.usersRepository.findByCPF(cpf);
 
     if(userAlreadyExists) {
-      throw new AppError("User already exists with this CPF");
+      throw new AppError("Usuário já existe com este CPF");
     }
 
     const age = this.dateProvider.calculateYears(birthdate);
 
     if(age < 18) {
-      throw new AppError("Invalid Birthdate. User must be older than 18 years");
+      throw new AppError("Data de nascimento inválida. O usuário deve ter mais de 18 anos");
     }
 
     const user = await this.usersRepository.create({

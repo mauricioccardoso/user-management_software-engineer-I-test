@@ -13,7 +13,7 @@ class AddressValidationService {
     const address = await this.viaCEPService.getAddressViaCEP(cep);
 
     if(address.uf !== "AM") {
-      throw new AppError("Invalid Address. Address must be located in Amazonas");
+      throw new AppError("Endereço inválido. O endereço deve estar localizado no Amazonas");
     }
   }
 }

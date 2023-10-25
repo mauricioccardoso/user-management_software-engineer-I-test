@@ -19,13 +19,13 @@ class UpdateUserUseCase {
     const user = await this.userRepository.findById(id);
 
     if(!user) {
-      throw new AppError("User does not exists");
+      throw new AppError("Usuário não existe");
     }
 
     const age = this.dateProvider.calculateYears(birthdate);
 
     if(age < 18) {
-      throw new AppError("Invalid Birthdate. User must be older than 18 years");
+      throw new AppError("Data de nascimento inválida. O usuário deve ter mais de 18 anos");
     }
 
     user.name = name;
