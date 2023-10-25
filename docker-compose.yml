@@ -1,6 +1,22 @@
 version: "3.8"
 
 services:
+  frontend-app:
+    build:
+      context: ./docker/frontend
+      dockerfile: Dockerfile.dev
+    container_name: frontend-app
+    command: wait-for backend-app:3333 -t 120 -- /usr/local/bin/start.sh
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/home/node/app
+    depends_on:
+      - backend-app
+    networks:
+      - network-app
+
   backend-app:
     build:
       context: ./docker/backend
